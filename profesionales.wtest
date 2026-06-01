@@ -1,0 +1,18 @@
+import empresa.*
+
+describe "Universidades" {
+
+    //UNIVERSIDADES
+    const universidadSanMartin = new Universidad(provincia="Buenos Aires", honorario= 3500, horas= 4, tipoDeProfesional= "Vinculado A Una")
+    const universidadRosario = new Universidad(provincia="Santa fe", honorario=2800, horas= 10,tipoDeProfesional= "Asociados de litoral")
+    const universidadCorrientes = new Universidad(provincia="Corrientes", honorario= 4200, horas= 10, tipoDeProfesional="Libre")
+    const universidadHurlingham = new Universidad(provincia= "Buenos Aires", honorario=8800, horas=10, tipoDeProfesional="Libre")
+
+    
+    //PROFESIONALES
+
+
+
+        test "description" {
+    }
+}
