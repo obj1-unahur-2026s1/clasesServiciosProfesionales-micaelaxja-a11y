@@ -14,7 +14,7 @@ describe "Universidades" {
     const juana =new ProfesionalVinculadoAUnaUniversidad(universidadDondeEstudio = universidadRosario)
     const melina = new ProfesionalesDelLitoral(universidadDondeEstudio = universidadCorrientes)
     const rocio = new ProfesionalesLibres(universidadDondeEstudio= universidadHurlingham,honorarios=5000,provincias=["Santa fe", "Cordoba","Buenos Aires"])
-    const luciana = new ProfesionalesLibres(universidadDondeEstudio= universidadRosario,honorarios=3200, provincias=["Santa fe", "Entre Rios"])
+    const luciana = new ProfesionalesLibres(universidadDondeEstudio= universidadRosario,honorarios=3200, provincias=["Santa fe", "Entre Rios","Corrientes","Misiones"])
 
     //EMPRESA
     const empresa = new EmpresaDeServicios(honorarioDeReferencia=3500)
@@ -37,6 +37,20 @@ describe "Universidades" {
             assert.equals(0, empresa.cuantosEstudiaronEn(universidadSanMartin))
         }
         test "profesionales caros" {
-          
+        assert.equals([rocio], empresa.profesionalesCaros())
+
+        }
+        test "universidades formadoras" {
+            assert.equals([universidadRosario, universidadCorrientes, universidadHurlingham], empresa.universidadesFormadoras())
+        }
+        test "Profesional mas barato: Juana" {
+            assert.equals(juana, empresa.profesionalMasBarato())
+        }
+        test "Esta empresa es de gente acotada. " {
+            assert.that(empresa.esDeGenteAcotada())
+        }
+        test "Pero si le agregamos a Luciana dos provincias más (p.ej. Corrientes y Misiones)" {
+        empresa.ingresarProfesional(luciana)
+        assert.notThat(empresa.esDeGenteAcotada())
         }
 }
