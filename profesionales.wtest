@@ -1,18 +1,42 @@
+import servicios.EmpresaDeServicios
 import empresa.*
 
 describe "Universidades" {
 
     //UNIVERSIDADES
-    const universidadSanMartin = new Universidad(provincia="Buenos Aires", honorario= 3500, horas= 4, tipoDeProfesional= "Vinculado A Una")
-    const universidadRosario = new Universidad(provincia="Santa fe", honorario=2800, horas= 10,tipoDeProfesional= "Asociados de litoral")
-    const universidadCorrientes = new Universidad(provincia="Corrientes", honorario= 4200, horas= 10, tipoDeProfesional="Libre")
-    const universidadHurlingham = new Universidad(provincia= "Buenos Aires", honorario=8800, horas=10, tipoDeProfesional="Libre")
+    const universidadSanMartin = new Universidad(provincia="Buenos Aires", honorarioRecomendado= 3500)
+    const universidadRosario = new Universidad(provincia="Santa fe", honorarioRecomendado=2800)
+    const universidadCorrientes = new Universidad(provincia="Corrientes", honorarioRecomendado= 4200)
+    const universidadHurlingham = new Universidad(provincia= "Buenos Aires", honorarioRecomendado=8800)
 
     
     //PROFESIONALES
+    const juana =new ProfesionalVinculadoAUnaUniversidad(universidadDondeEstudio = universidadRosario)
+    const melina = new ProfesionalesDelLitoral(universidadDondeEstudio = universidadCorrientes)
+    const rocio = new ProfesionalesLibres(universidadDondeEstudio= universidadHurlingham,honorarios=5000,provincias=["Santa fe", "Cordoba","Buenos Aires"])
+    const luciana = new ProfesionalesLibres(universidadDondeEstudio= universidadRosario,honorarios=3200, provincias=["Santa fe", "Entre Rios"])
 
+    //EMPRESA
+    const empresa = new EmpresaDeServicios(honorarioDeReferencia=3500)
 
-
-        test "description" {
+    method initialize(){
+        empresa.ingresarProfesional(juana)
+        empresa.ingresarProfesional(melina)
+        empresa.ingresarProfesional(rocio)
+        empresa.ingresarProfesional(luciana)
+        
     }
+
+        test "dos de sus profesionales estudiaron en Rosario" {
+            assert.equals(2, empresa.cuantosEstudiaronEn(universidadRosario))
+    }
+        test " uno de sus profesionales estudio en Hurlingham" {
+            assert.equals(1, empresa.cuantosEstudiaronEn(universidadHurlingham))
+        }
+        test " ninguno (o sea cero) en San Martín." {
+            assert.equals(0, empresa.cuantosEstudiaronEn(universidadSanMartin))
+        }
+        test "profesionales caros" {
+          
+        }
 }
