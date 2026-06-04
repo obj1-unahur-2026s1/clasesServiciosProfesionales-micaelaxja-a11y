@@ -36,4 +36,10 @@ class EmpresaDeServicios {
         return profesionales.all({p=>p.puedeTrabajarEn().size() <= 3})
     }
 
+//Etapa 2 - solicitantes
+
+    method puedeSatisfacerA_(unSolicitante){
+        return profesionales.any({p=>unSolicitante.puedeSerAtendidoPor(p)})
+    }
+
 }
